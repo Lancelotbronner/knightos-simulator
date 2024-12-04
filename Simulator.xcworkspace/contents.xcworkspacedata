@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "absolute:/Users/lancelot/Developer/System/KnightOS/Toolchain/z80e">
+   </FileRef>
+   <FileRef
+      location = "group:SimulatorKit">
+   </FileRef>
+   <FileRef
+      location = "group:Simulator.xcodeproj">
+   </FileRef>
+</Workspace>

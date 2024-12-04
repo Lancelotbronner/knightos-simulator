@@ -1,0 +1,22 @@
+{
+  "originHash" : "5922aae5d5a43f0387e5953c1cdb11900edd295855aa8e13143d0096601d24a6",
+  "pins" : [
+    {
+      "identity" : "scas",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Lancelotbronner/scas",
+      "state" : {
+        "revision" : "f333a1d3a6c16bb7d5c40d920edba31399294874"
+      }
+    },
+    {
+      "identity" : "z80e",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Lancelotbronner/z80e",
+      "state" : {
+        "revision" : "f5d38c76469b136fedd38ab7282b09bc39073320"
+      }
+    }
+  ],
+  "version" : 3
+}
