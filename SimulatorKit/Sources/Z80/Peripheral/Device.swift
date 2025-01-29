@@ -1,6 +1,6 @@
 //
-//  File.swift
-//  
+//  Peripheral.swift
+//  SimulatorKit
 //
 //  Created by Christophe Bronner on 2024-04-11.
 //

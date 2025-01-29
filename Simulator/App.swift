@@ -7,8 +7,9 @@
 
 import SwiftUI
 
-@main struct SimulatorApp: App {
+@main
+struct SimulatorApp: App {
 	var body: some Scene {
-		CalculatorScene<CalculatorTi73>()
+		SimulatorScene()
 	}
 }

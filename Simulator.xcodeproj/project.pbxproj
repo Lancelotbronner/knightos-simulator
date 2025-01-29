@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		73D6CE582CDE8940008EEC64 /* libz80e in Frameworks */ = {isa = PBXBuildFile; productRef = 73D6CE572CDE8940008EEC64 /* libz80e */; };
-		73D6CE5A2CDE8942008EEC64 /* SimulatorKit in Frameworks */ = {isa = PBXBuildFile; productRef = 73D6CE592CDE8942008EEC64 /* SimulatorKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		731ACAC82BA7D2DA0064F834 /* Simulator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Simulator.app; path = /Users/lancelot/Developer/System/KnightOS/Applications/Simulator/build/Debug/Simulator.app; sourceTree = "<absolute>"; };
+		732713382D47176F00D76E82 /* Simulator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Simulator.app; path = "/Users/lancelot/Developer/System/KnightOS Project/Applications/Simulator/build/Debug/Simulator.app"; sourceTree = "<absolute>"; };
+		73C278422D4ABB72008B4094 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -41,7 +41,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				73D6CE5A2CDE8942008EEC64 /* SimulatorKit in Frameworks */,
 				73D6CE582CDE8940008EEC64 /* libz80e in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -52,6 +51,7 @@
 		731ACABF2BA7D2DA0064F834 = {
 			isa = PBXGroup;
 			children = (
+				73C278422D4ABB72008B4094 /* README.md */,
 				733CF5AC2C6BF32800660292 /* Simulator */,
 			);
 			sourceTree = "<group>";
@@ -77,10 +77,9 @@
 			name = Simulator;
 			packageProductDependencies = (
 				73D6CE572CDE8940008EEC64 /* libz80e */,
-				73D6CE592CDE8942008EEC64 /* SimulatorKit */,
 			);
 			productName = "Studio z80";
-			productReference = 731ACAC82BA7D2DA0064F834 /* Simulator.app */;
+			productReference = 732713382D47176F00D76E82 /* Simulator.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -108,8 +107,7 @@
 			mainGroup = 731ACABF2BA7D2DA0064F834;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				73DD17312C9A1BF700B79A82 /* XCLocalSwiftPackageReference "SimulatorKit" */,
-				73173B652CDE870A00F93B1A /* XCRemoteSwiftPackageReference "z80e" */,
+				73173B652CDE870A00F93B1A /* XCRemoteSwiftPackageReference "knightos-z80e" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 731ACABF2BA7D2DA0064F834;
@@ -363,20 +361,13 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCLocalSwiftPackageReference section */
-		73DD17312C9A1BF700B79A82 /* XCLocalSwiftPackageReference "SimulatorKit" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = SimulatorKit;
-		};
-/* End XCLocalSwiftPackageReference section */
-
 /* Begin XCRemoteSwiftPackageReference section */
-		73173B652CDE870A00F93B1A /* XCRemoteSwiftPackageReference "z80e" */ = {
+		73173B652CDE870A00F93B1A /* XCRemoteSwiftPackageReference "knightos-z80e" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Lancelotbronner/z80e";
+			repositoryURL = "https://github.com/Lancelotbronner/knightos-z80e";
 			requirement = {
 				kind = revision;
-				revision = f5d38c76469b136fedd38ab7282b09bc39073320;
+				revision = d5adcfdc7317829f71dc5231ca76558d22d8430d;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -384,13 +375,8 @@
 /* Begin XCSwiftPackageProductDependency section */
 		73D6CE572CDE8940008EEC64 /* libz80e */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 73173B652CDE870A00F93B1A /* XCRemoteSwiftPackageReference "z80e" */;
+			package = 73173B652CDE870A00F93B1A /* XCRemoteSwiftPackageReference "knightos-z80e" */;
 			productName = libz80e;
-		};
-		73D6CE592CDE8942008EEC64 /* SimulatorKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 73DD17312C9A1BF700B79A82 /* XCLocalSwiftPackageReference "SimulatorKit" */;
-			productName = SimulatorKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

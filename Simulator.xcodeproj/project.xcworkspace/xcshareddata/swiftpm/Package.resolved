@@ -1,20 +1,20 @@
 {
-  "originHash" : "5922aae5d5a43f0387e5953c1cdb11900edd295855aa8e13143d0096601d24a6",
+  "originHash" : "fe8bcbbbfaba1ba2f6d2e66dac0a72d7627fce876421598bc5adfe4c161f7a65",
   "pins" : [
+    {
+      "identity" : "knightos-z80e",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Lancelotbronner/knightos-z80e",
+      "state" : {
+        "revision" : "d5adcfdc7317829f71dc5231ca76558d22d8430d"
+      }
+    },
     {
       "identity" : "scas",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Lancelotbronner/scas",
       "state" : {
         "revision" : "f333a1d3a6c16bb7d5c40d920edba31399294874"
-      }
-    },
-    {
-      "identity" : "z80e",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Lancelotbronner/z80e",
-      "state" : {
-        "revision" : "f5d38c76469b136fedd38ab7282b09bc39073320"
       }
     }
   ],

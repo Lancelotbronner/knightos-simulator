@@ -1,4 +1,4 @@
-// swift-tools-version: 5.10
+// swift-tools-version: 6.0
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
 	name: "SimulatorKit",
 	platforms: [
-		.macOS(.v14),
+		.macOS(.v15),
 	],
 	products: [
 		.library(name: "SimulatorKit", targets: [
@@ -14,6 +14,10 @@ let package = Package(
 		]),
 	],
 	targets: [
-		.target(name: "SimulatorZ80"),
-	]
+		.target(name: "CoreSimulator"),
+		.target(name: "SimulatorKit", dependencies: ["CoreSimulator"]),
+		
+		.target(name: "SimulatorZ80", dependencies: ["SimulatorKit"]),
+	],
+	cLanguageStandard: .c2x
 )
