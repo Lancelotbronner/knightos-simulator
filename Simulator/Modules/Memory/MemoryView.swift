@@ -6,10 +6,10 @@
 //
 
 import SwiftUI
-@preconcurrency import libz80e
+import libz80e
 
 struct MemoryView: View {
-	@Environment(\.simulator) private var simulator
+	@Environment(SimulatorModel.self) private var simulator
 	@State private var selection: Set<UInt16> = []
 
 	var body: some View {
@@ -37,7 +37,7 @@ private struct MemoryPage: View {
 
 	private var header: some View {
 		VStack(alignment: .leading) {
-			Text("Page \(page)")
+			Text("Page $\(page)")
 				.font(.headline)
 		}
 	}
@@ -50,6 +50,7 @@ private struct MemoryPage: View {
 		} header: {
 			header
 		}
+		.id("$\(page)")
 	}
 }
 
@@ -69,6 +70,7 @@ private struct MemoryCell: View {
 				.frame(width: width)
 			TextField("Value", value: binding, format: .number)
 		}
+		.id(address)
 	}
 }
 

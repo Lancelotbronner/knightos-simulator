@@ -9,7 +9,8 @@ import SwiftUI
 import libz80e
 
 struct FlashView: View {
-	@Environment(\.simulator) private var simulator
+	@Environment(SimulatorModel.self) private var simulator
+	@Environment(\.simulatorScene) private var scene
 	@State private var selection: Set<Int> = []
 
 	private var pageCount: Int {
@@ -17,6 +18,7 @@ struct FlashView: View {
 	}
 
 	var body: some View {
+		@Bindable var scene = scene
 		ScrollView(.vertical) {
 			LazyVStack(pinnedViews: .sectionHeaders) {
 				ForEach(0..<pageCount, id: \.self) { i in
@@ -26,6 +28,28 @@ struct FlashView: View {
 		}
 		.monospaced()
 		.labelsHidden()
+		.textFieldStyle(.plain)
+		.scrollPosition(id: $scene.flashPage)
+		.scrollPosition(id: $scene.flashAddress)
+	}
+}
+
+struct FlashContent: View {
+	@Environment(SimulatorModel.self) private var simulator
+	@Environment(\.simulatorScene) private var scene
+
+	private var pageCount: Int {
+		Int(simulator.__asic.mmu.settings.flash_pages)
+	}
+
+	var body: some View {
+		@Bindable var scene = scene
+		List(selection: $scene.flashPage) {
+			ForEach(0..<pageCount, id: \.self) { i in
+				Text("$\(i)")
+					.id("$\(i)")
+			}
+		}
 	}
 }
 
@@ -45,10 +69,11 @@ private struct FlashPage: View {
 			}
 		} header: {
 			VStack(alignment: .leading) {
-				Text("Page $\(range.lowerBound/0x4000)")
+				Text("Page $\(page)")
 					.font(.headline)
 			}
 		}
+		.id("$\(page)")
 	}
 }
 
@@ -72,6 +97,7 @@ private struct FlashCell: View {
 				.frame(width: width)
 			TextField("Value", value: $simulator.__asic.mmu.flash[address], format: .number)
 		}
+		.id(address)
 	}
 }
 

@@ -6,27 +6,45 @@
 //
 
 import SwiftUI
-import libz80e
+@preconcurrency import libz80e
 
-@Observable
+@Observable @MainActor
 public final class SimulatorModel {
 
-	public init() {
+	init() {
 		_asic = .init()
-		asic_init(&_asic, TI73)
 	}
 
-	var route = SimulatorRoute.simulator
+	public init(_ model: ti_device_type) {
+		_asic = .init()
+		// FIXME: concurrency errors with logging?
+		asic_init(&_asic, model)
+	}
+
+	deinit {
+		asic_deinit(&_asic)
+	}
+
 	var asic: asic
 
+	@ObservationIgnored
 	var __asic: asic {
 		get { _asic }
 		_modify { yield &_asic }
 	}
 
 	public func tick(_ cycles: Int) {
-		asic_tick_cycles(&__asic, Int32(truncatingIfNeeded: cycles))
+		asic_tick_cycles(&asic, Int32(truncatingIfNeeded: cycles))
 	}
+}
+
+@Observable
+final class SimulatorSceneModel {
+	var route = SimulatorRoute.simulator
+	var memoryPage: String?
+	var storagePage: String?
+	var flashPage: String?
+	var flashAddress: Int?
 }
 
 enum SimulatorRoute: Hashable {
@@ -44,5 +62,5 @@ enum SimulatorRoute: Hashable {
 }
 
 extension EnvironmentValues {
-	@Entry var simulator = SimulatorModel()
+	@Entry var simulatorScene = SimulatorSceneModel()
 }

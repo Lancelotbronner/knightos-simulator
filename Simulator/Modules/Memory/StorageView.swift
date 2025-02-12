@@ -9,7 +9,7 @@ import SwiftUI
 import libz80e
 
 struct StorageView: View {
-	@Environment(\.simulator) private var simulator
+	@Environment(SimulatorModel.self) private var simulator
 	@State private var selection: Set<Int> = []
 
 	private var pageCount: Int {
@@ -46,10 +46,11 @@ private struct StoragePage: View {
 			}
 		} header: {
 			VStack(alignment: .leading) {
-				Text("Page $\(range.lowerBound/0x4000)")
+				Text("Page $\(page)")
 					.font(.headline)
 			}
 		}
+		.id("$\(page)")
 	}
 }
 
@@ -73,6 +74,7 @@ private struct StorageCell: View {
 				.frame(width: width)
 			TextField("Value", value: $simulator.__asic.mmu.ram[address], format: .number)
 		}
+		.id(address)
 	}
 }
 

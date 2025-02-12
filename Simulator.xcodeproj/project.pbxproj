@@ -11,8 +11,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		732713382D47176F00D76E82 /* Simulator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Simulator.app; path = "/Users/lancelot/Developer/System/KnightOS Project/Applications/Simulator/build/Debug/Simulator.app"; sourceTree = "<absolute>"; };
 		73C278422D4ABB72008B4094 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		73C2786F2D4AC1DC008B4094 /* Simulator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Simulator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -53,6 +53,7 @@
 			children = (
 				73C278422D4ABB72008B4094 /* README.md */,
 				733CF5AC2C6BF32800660292 /* Simulator */,
+				73C2786F2D4AC1DC008B4094 /* Simulator.app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -79,7 +80,7 @@
 				73D6CE572CDE8940008EEC64 /* libz80e */,
 			);
 			productName = "Studio z80";
-			productReference = 732713382D47176F00D76E82 /* Simulator.app */;
+			productReference = 73C2786F2D4AC1DC008B4094 /* Simulator.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */

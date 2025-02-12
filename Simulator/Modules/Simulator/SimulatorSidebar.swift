@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct SimulatorSidebar: View {
-	let simulator: SimulatorModel
+	@Environment(\.simulatorScene) private var scene
 
 	var body: some View {
-		@Bindable var simulator = simulator
-		List(selection: $simulator.route) {
+		@Bindable var scene = scene
+		List(selection: $scene.route) {
 			NavigationLink("Simulator", value: SimulatorRoute.simulator)
 			Section("Components") {
 				NavigationLink("CPU", value: SimulatorRoute.cpu)
