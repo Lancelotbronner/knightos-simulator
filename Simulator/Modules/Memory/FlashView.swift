@@ -13,23 +13,16 @@ struct FlashView: View {
 	@Environment(\.simulatorScene) private var scene
 	@State private var selection: Set<Int> = []
 
-	private var pageCount: Int {
-		Int(simulator.__asic.mmu.settings.flash_pages)
-	}
-
 	var body: some View {
 		@Bindable var scene = scene
 		ScrollView(.vertical) {
 			LazyVStack(pinnedViews: .sectionHeaders) {
-				ForEach(0..<pageCount, id: \.self) { i in
-					FlashPage(page: i, simulator: simulator)
-				}
+				FlashPage(page: scene.flashPage, simulator: simulator)
 			}
 		}
 		.monospaced()
 		.labelsHidden()
 		.textFieldStyle(.plain)
-		.scrollPosition(id: $scene.flashPage)
 		.scrollPosition(id: $scene.flashAddress)
 	}
 }
@@ -50,6 +43,7 @@ struct FlashContent: View {
 					.id("$\(i)")
 			}
 		}
+		.monospaced()
 	}
 }
 
@@ -64,8 +58,8 @@ private struct FlashPage: View {
 
 	var body: some View {
 		Section {
-			ForEach(range, id: \.self) {
-				FlashCell(address: $0, simulator: simulator)
+			ForEach(0..<0x4000) { i in
+				FlashCell(address: page * 0x4000 + i, simulator: simulator)
 			}
 		} header: {
 			VStack(alignment: .leading) {

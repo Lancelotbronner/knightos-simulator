@@ -10,30 +10,42 @@ import libz80e
 
 struct MemoryView: View {
 	@Environment(SimulatorModel.self) private var simulator
+	@Environment(\.simulatorScene) private var scene
 	@State private var selection: Set<UInt16> = []
 
 	var body: some View {
+		@Bindable var scene = scene
 		ScrollView(.vertical) {
 			LazyVStack(pinnedViews: .sectionHeaders) {
-				ForEach(0..<4, id: \.self) {
-					MemoryPage(page: $0, simulator: simulator)
-				}
+				MemoryPage(page: scene.memoryPage, simulator: simulator)
 			}
 		}
 		.monospaced()
 		.labelsHidden()
 		.textFieldStyle(.plain)
+//		.scrollPosition(id: $scene.flashAddress)
+	}
+}
+
+struct MemoryContent: View {
+	@Environment(SimulatorModel.self) private var simulator
+	@Environment(\.simulatorScene) private var scene
+
+	var body: some View {
+		@Bindable var scene = scene
+		List(selection: $scene.memoryPage) {
+			ForEach(0..<4) { i in
+				Text("$\(i)")
+					.id("$\(i)")
+			}
+		}
+		.monospaced()
 	}
 }
 
 private struct MemoryPage: View {
 	let page: Int
 	let simulator: SimulatorModel
-
-	private var range: Range<UInt16> {
-		let lowerBound = UInt16(truncatingIfNeeded: page * 0x4000)
-		return Range(uncheckedBounds: (lowerBound, lowerBound + 0x4000))
-	}
 
 	private var header: some View {
 		VStack(alignment: .leading) {
@@ -44,8 +56,8 @@ private struct MemoryPage: View {
 
 	var body: some View {
 		Section {
-			ForEach(range, id: \.self) {
-				MemoryCell(address: $0, simulator: simulator)
+			ForEach(0..<0x4000) {
+				MemoryCell(address: UInt16(truncatingIfNeeded: page * 0x4000 + $0), simulator: simulator)
 			}
 		} header: {
 			header

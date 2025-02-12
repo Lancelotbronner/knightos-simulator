@@ -41,9 +41,9 @@ public final class SimulatorModel {
 @Observable
 final class SimulatorSceneModel {
 	var route = SimulatorRoute.simulator
-	var memoryPage: String?
-	var storagePage: String?
-	var flashPage: String?
+	var memoryPage = 0
+	var storagePage = 0
+	var flashPage = 0
 	var flashAddress: Int?
 }
 

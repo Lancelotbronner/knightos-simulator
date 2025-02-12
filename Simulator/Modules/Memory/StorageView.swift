@@ -10,18 +10,14 @@ import libz80e
 
 struct StorageView: View {
 	@Environment(SimulatorModel.self) private var simulator
+	@Environment(\.simulatorScene) private var scene
 	@State private var selection: Set<Int> = []
 
-	private var pageCount: Int {
-		Int(simulator.__asic.mmu.settings.ram_pages)
-	}
-
 	var body: some View {
+		@Bindable var scene = scene
 		ScrollView(.vertical) {
 			LazyVStack(pinnedViews: .sectionHeaders) {
-				ForEach(0..<4, id: \.self) {
-					StoragePage(page: $0, simulator: simulator)
-				}
+				StoragePage(page: scene.storagePage, simulator: simulator)
 			}
 		}
 		.monospaced()
@@ -30,19 +26,33 @@ struct StorageView: View {
 	}
 }
 
+struct StorageContent: View {
+	@Environment(SimulatorModel.self) private var simulator
+	@Environment(\.simulatorScene) private var scene
+
+	private var pageCount: Int {
+		Int(simulator.__asic.mmu.settings.ram_pages)
+	}
+
+	var body: some View {
+		@Bindable var scene = scene
+		List(selection: $scene.storagePage) {
+			ForEach(0..<pageCount, id: \.self) { i in
+				Text("$\(i)")
+					.id("$\(i)")
+			}
+		}
+	}
+}
+
 private struct StoragePage: View {
 	let page: Int
 	let simulator: SimulatorModel
 
-	private var range: Range<Int> {
-		let lowerBound = page * 0x4000
-		return Range(uncheckedBounds: (lowerBound, lowerBound + 0x4000))
-	}
-
 	var body: some View {
 		Section {
-			ForEach(range, id: \.self) {
-				StorageCell(address: $0, simulator: simulator)
+			ForEach(0..<0x4000) {
+				StorageCell(address: page * 0x4000 + $0, simulator: simulator)
 			}
 		} header: {
 			VStack(alignment: .leading) {
